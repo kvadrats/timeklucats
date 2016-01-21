@@ -1,0 +1,14 @@
+.invisible { display: none; }
+
+
+.chat { margin: 10px; padding: 10px; border: 1px solid #000; border-radius: 3px; }
+.chatInput { height: 30px; }
+.chatInput * { display: inline-block; vertical-align: middle; }
+
+.messageContainer { height: 100px; word-wrap: break-word; padding: 10px; }
+.message { width: 85%; }
+
+.userAvatar { background-size: contain; width: 22px; }
+.messageSender { display: inline-block; margin-right: 30px; }
+.messageText { display: inline-block; }
+.messageDate { margin-top: 10px; }
