@@ -23,6 +23,7 @@ $(function() {
         modalTrigger = $('.registerModalTrigger'),
         registerBtn = $('.registrationBtn'),
         chatrooms = $('.chatrooms');
+        loginError = $('.loginError')
 
 
     var doLogin = function() {
@@ -34,11 +35,11 @@ $(function() {
             p: pass
         };
 
-
         var onSuccess = function(data) {
-            if (data === 'ERR') console.log('ERROR');
+            if (data === 'ERR') { console.log('ERROR'); return loginError.removeClass('invisible').html('Username or password incorrect!'); }
             $('.landing').addClass('invisible');
             chatrooms.removeClass('invisible');
+            //loginError.addClass('invisible');
             User = data;
         };
 
@@ -92,7 +93,8 @@ $(function() {
     var searchBtn = $('.searchBtn'),
         searchTerm = $('.term'),
         searchBox = $('.searchBox'),
-        chatTemplate = $('.chatTemplate');
+        chatTemplate = $('.chatTemplate'),
+        searchError = $('.searchError');
 
 
 
@@ -114,7 +116,9 @@ $(function() {
         pkg.id = User.id;
 
         var onSuccess = function(data) {
-            if (data === 'ERR') console.log('ERROR');
+            if (data === 'NO_USER') {return searchError.removeClass('invisible').html('User not found, try again');}
+
+            if (!searchError.hasClass('invisible')) searchError.addClass('invisible').html('');
 
             var chat = data[0];
 

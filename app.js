@@ -17,7 +17,6 @@ var io = require('socket.io')(server.listener);
 
 
 
-
 server.register(require('inert'), function(err) {
   if (err) {
     console.log(err);
@@ -48,7 +47,9 @@ server.register(require('inert'), function(err) {
       var username = request.payload.u,
           pass = request.payload.p;
 
-      if (!username || !pass) return reply('ERR').code(400);
+
+      if (!username || !pass) return reply('ERR').code(200);
+
 
       var success = false,
           welcome = {}; //welcom package
@@ -68,7 +69,7 @@ server.register(require('inert'), function(err) {
       });
 
       if (success) reply(welcome).code(200);
-      else reply('ERR').code(400);
+      else reply('ERR').code(200);
 
     }
   });
@@ -176,7 +177,7 @@ server.register(require('inert'), function(err) {
 
 
       if (pkg.length > 0) reply(pkg).code(200);
-      else reply().code(200);
+      else reply('NO_USER').code(200) ;
 
     }
   });
